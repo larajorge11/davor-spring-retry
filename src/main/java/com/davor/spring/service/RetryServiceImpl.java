@@ -1,6 +1,7 @@
 package com.davor.spring.service;
 
 import org.springframework.retry.annotation.Backoff;
+import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,9 @@ public class RetryServiceImpl implements RetryService {
         return "SUCCESS";
     }
 
+    @Recover
     @Override
     public String getRecoveryAfterCheckRetry() {
-        return null;
+        return "Service is out of service temporarily";
     }
 }
